@@ -7,6 +7,9 @@ public class Gold : Collectable
     public override void OnCollected()
     {
         GameManager.Instance.Gold++;
-        Debug.Log(GameManager.Instance.Gold);
+        //Debug.Break();
+        //Debug.Log(GameManager.Instance.Gold);
+        gameObject.SetActive(false);
+        //Destroy(gameObject); 
     }
 }

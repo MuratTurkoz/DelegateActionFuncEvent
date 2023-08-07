@@ -20,30 +20,23 @@ public class GameManager : MonoBehaviour
         }
     }
     // Gold deðiþtiðinde çaðrýlacak delegasyon tipi
-    public delegate void GoldChanged2(int gold);
+    //public delegate void GoldChanged(int gold);
     // Delegasyon tipine uygun delegasyon deðiþkeni
-    public GoldChanged2 goldChanged2;
-
-
-    public event Action<int> GoldChanged;
-
-
-
+    //public GoldChanged goldChanged;
+    //public Action<int> GoldChanged;
+    public  Action<int> OnGoldChanged;
     private int _gold;
     public int Gold
     {
         get => _gold;
         set
         {
-           
-            goldChanged2(_gold);
             _gold = value;
-            goldChanged2 -= OnGoldChanged;
-            goldChanged2?.Invoke(_gold);
-            //GoldChanged?.Invoke(_gold);
+            if (OnGoldChanged != null)
+                OnGoldChanged?.Invoke(_gold);
+            //goldChanged?.Invoke(_gold);
         }
     }
-
     private void Awake()
     {
         if (_instance && _instance != this)
@@ -55,8 +48,6 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-    private void OnGoldChanged(int val)
-    {
-        _gold = val;
-    }
+    //private void OnGoldChanged(int val) => _gold = val;
+
 }

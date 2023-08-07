@@ -8,16 +8,16 @@ public class GoldDisplay : MonoBehaviour
     [SerializeField] private TMP_Text _goldText;
     private void OnEnable()
     {
-        GameManager.Instance.goldChanged2 += OyuncuPuanDegisti;
+        GameManager.Instance.OnGoldChanged += OyuncuGoldDegisti;
     }
     private void OnDisable()
     {
-        GameManager.Instance.goldChanged2 -= OyuncuPuanDegisti;
+        GameManager.Instance.OnGoldChanged -= OyuncuGoldDegisti;
     }
 
-    void OyuncuPuanDegisti(int val)
+    private void OyuncuGoldDegisti(int val)
     {
         // UI üzerindeki gold metnini güncelliyoruz
-        _goldText.text = $"Gold: {GameManager.Instance.Gold}";
+        _goldText.text = $"Gold : {GameManager.Instance.Gold}";
     }
 }
