@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -24,7 +25,10 @@ public class GameManager : MonoBehaviour
     // Delegasyon tipine uygun delegasyon deðiþkeni
     //public GoldChanged goldChanged;
     //public Action<int> GoldChanged;
-    public event Action<int> OnGoldChanged;
+    public UnityAction<int> OnGoldChanged1;
+
+    //public UnityEvent<int> OnGoldChanged2;
+    //public event Action<int> OnGoldChanged;
     private int _gold;
     public int Gold
     {
@@ -32,8 +36,15 @@ public class GameManager : MonoBehaviour
         set
         {
             _gold = value;
-            if (OnGoldChanged != null)
-                OnGoldChanged?.Invoke(_gold);
+            if (OnGoldChanged1 != null)
+                OnGoldChanged1.Invoke(_gold);
+            //if (OnGoldChanged2 != null)
+            //    OnGoldChanged2.Invoke(_gold);
+
+            //    goldChanged.Invoke(value);
+            //OnGoldChanged?.Invoke(_gold);
+            //OnGoldChanged1?.Invoke(_gold);
+            //OnGoldChanged2?.Invoke(_gold);
             //goldChanged?.Invoke(_gold);
         }
     }
@@ -48,6 +59,6 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-    //private void OnGoldChanged(int val) => _gold = val;
+    private void OnGoldChanged(int val) => _gold = val;
 
 }
