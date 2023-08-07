@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     // Delegasyon tipine uygun delegasyon deðiþkeni
     //public GoldChanged goldChanged;
     //public Action<int> GoldChanged;
-    public  Action<int> OnGoldChanged;
+    public event Action<int> OnGoldChanged;
     private int _gold;
     public int Gold
     {
